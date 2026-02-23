@@ -1,7 +1,8 @@
 # Presidio Analyzer – PII Detection Service
 # Pulls the official Microsoft image from MCR.
-# Port 3000 is exposed per the official Presidio configuration.
+# Correct path: mcr.microsoft.com/presidio-analyzer (without microsoft/ prefix)
+# Latest stable: 2.2.361
 
-FROM mcr.microsoft.com/microsoft/presidio-analyzer:latest
+FROM mcr.microsoft.com/presidio-analyzer:latest
 
 EXPOSE 3000
