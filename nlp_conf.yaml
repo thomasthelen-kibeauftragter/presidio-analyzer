@@ -1,5 +1,5 @@
 # Presidio NLP Configuration
-# Supports both English and German
+# Supports English and German spaCy models
 nlp_engine_name: spacy
 models:
   - lang_code: en
