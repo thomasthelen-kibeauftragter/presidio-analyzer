@@ -1,5 +1,5 @@
 # Presidio Analyzer – PII Detection Service
-# Custom build: Adds German language support (de_core_news_lg + German recognizers)
+# Custom build: English + German (de_core_news_lg)
 
 FROM mcr.microsoft.com/presidio-analyzer:latest
 
@@ -9,10 +9,12 @@ USER root
 RUN pip install --no-cache-dir spacy && \
     python -m spacy download de_core_news_lg
 
-# Copy our custom NLP config (English + German spaCy models)
+# Copy custom configs:
+# 1. NLP config (English + German spaCy models)
 COPY nlp_conf.yaml /app/presidio_analyzer/conf/default.yaml
-
-# Copy our custom recognizer config (adds German to Email, Phone, IBAN, Date etc.)
+# 2. Analyzer engine config (supported_languages: en + de)
+COPY analyzer_conf.yaml /app/presidio_analyzer/conf/default_analyzer.yaml
+# 3. Recognizer registry (Email, Phone, IBAN etc. for de + en)
 COPY recognizers_de.yaml /app/presidio_analyzer/conf/default_recognizers.yaml
 
 USER 1001
